@@ -1,5 +1,13 @@
 # StarLabs KiteAI Bot 🚀
 
+<div align="center">
+
+[![Telegram Channel](https://img.shields.io/badge/Telegram-Channel-blue?style=for-the-badge&logo=telegram)](https://t.me/StarLabsTech)
+[![Telegram Chat](https://img.shields.io/badge/Telegram-Chat-blue?style=for-the-badge&logo=telegram)](https://t.me/StarLabsChat)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/0xStarLabs)
+
+</div>
+
 A powerful automation tool for KiteAI Ozone platform with advanced task management, AI interactions, token operations, and social integrations.
 
 ## 🌟 Features
