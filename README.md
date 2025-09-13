@@ -138,19 +138,13 @@ STAKINGS:
 ```
 
 ### 3. Web Configuration Interface
-Launch the browser-based configuration editor:
-```bash
-python -c "from src.utils.config_browser import run; run()"
-```
+Launch the browser-based configuration editor
+
 Access at: `http://127.0.0.1:3456`
 
 ## 🎮 Usage
 
 ### Database Management
-Before running tasks, set up the database:
-```bash
-python -c "from src.model.database.db_manager import show_database_menu; import asyncio; asyncio.run(show_database_menu())"
-```
 
 Database options:
 - **Create/Reset Database** - Initialize new database with tasks
