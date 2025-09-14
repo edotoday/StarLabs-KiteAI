@@ -826,6 +826,10 @@ class KiteAI:
             response = await self.session.post('https://ozone-point-system.prod.gokite.ai/badges/mint', headers=headers, json=data)
 
             error = response.json().get("error")
+            if "You have minted the badge" in response.text:
+                logger.success(f"[{self.account_index}] | Already claimed badge {badge_id}")
+                return True
+            
             if response.status_code <200 or response.status_code >299 or error:
                 raise Exception(f"Failed to claim badge: {response.text}")
             else:
