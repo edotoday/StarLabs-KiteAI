@@ -124,10 +124,11 @@ class Start:
                 "get_account_info",
                 "ozone_staking",
                 "ozone_ai_chat",
+                "account_info"
             ]
 
             # Проверяем, есть ли хотя бы один таск из ozone_tasks
-            has_ozone_task = any(task["name"] in ozone_tasks for task in tasks)
+            has_ozone_task = any(task["name"].lower() in ozone_tasks for task in tasks)
             if has_ozone_task:
                 if not await self.kiteai_instance.login():
                     return False
@@ -230,8 +231,8 @@ class Start:
         elif task == "faucet_onchain":
             return await self.kiteai_instance.faucet_onchain()
 
-        elif task == "get_account_info":
-            return await self.kiteai_instance.get_account_info()
+        elif task == "account_info":
+            return await self.kiteai_instance.get_account_info(log=True)
 
         elif task == "connect_socials":
             return await self.kiteai_instance.connect_socials()

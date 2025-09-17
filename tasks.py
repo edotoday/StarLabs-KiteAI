@@ -1,7 +1,8 @@
-TASKS = ["EVERYTHING"]
+TASKS = ["ACCOUNT_INFO"]
 
 EVERYTHING = ["complete_quiz", "faucet", "faucet_onchain", "ozone_staking", "claim_badges", "ozone_ai_chat", "tesseract_swaps", "kite_bridge"]
 
+ACCOUNT_INFO = ["account_info"]
 FAUCET = ["faucet"]
 FAUCET_ONCHAIN = ["faucet_onchain"]
 CONNECT_SOCIALS = ["connect_socials"]

@@ -346,7 +346,7 @@ class KiteAI:
             raise
 
     @retry_async(default_value=False)
-    async def get_account_info(self) -> dict:
+    async def get_account_info(self, log: bool = False) -> dict:
         '''
         Response like this:
         {
@@ -482,7 +482,9 @@ class KiteAI:
                 raise Exception(f"Failed to get user info: {response.text}")
 
             if response_json["error"] == "":
-                # logger.success(f"[{self.account_index}] | Successfully got user info")
+                if log:
+                    logger.success(f"[{self.account_index}] | Successfully got user info")
+                    self._display_account_info(response_json["data"])
                 return response_json["data"]
             else:
                 raise Exception(f"Failed to get user info: {response.text}")
@@ -1109,3 +1111,57 @@ class KiteAI:
         except Exception as e:
             logger.error(f"[{self.account_index}] | Error getting swap balances: {e}")
             return {}
+
+    def _display_account_info(self, data: dict) -> None:
+        """Display account info in a nice table format"""
+        try:
+            profile = data.get("profile", {})
+            if not profile:
+                return
+                
+            logger.info(f"[{self.account_index}] | Account Information:")
+            logger.info(f"[{self.account_index}] | ┌─────────────────────────────────────┐")
+            
+            # Display badges_minted
+            badges_minted = profile.get("badges_minted")
+            if badges_minted is not None:
+                if isinstance(badges_minted, list) and badges_minted:
+                    badges_str = ", ".join(str(badge) for badge in badges_minted)
+                    logger.info(f"[{self.account_index}] | │ Badges Minted: {badges_str:<16}     │")
+                elif isinstance(badges_minted, int):
+                    logger.info(f"[{self.account_index}] | │ Badges Minted: {badges_minted:<16}    │")
+            
+            # Display rank
+            rank = profile.get("rank")
+            if rank is not None:
+                logger.info(f"[{self.account_index}] | │ Rank:          {rank:<16}     │")
+            
+            # Display total_v1_xp_points
+            total_v1_xp = profile.get("total_v1_xp_points")
+            if total_v1_xp is not None:
+                logger.info(f"[{self.account_index}] | │ V1 XP Points:  {total_v1_xp:<16}     │")
+            
+            # Display total_xp_points
+            total_xp = profile.get("total_xp_points")
+            if total_xp is not None:
+                logger.info(f"[{self.account_index}] | │ Total XP:      {total_xp:<16}     │")
+            
+            # Display user_id
+            user_id = profile.get("user_id")
+            if user_id is not None:
+                logger.info(f"[{self.account_index}] | │ User ID:       {user_id:<16}     │")
+            
+            # Display referral_code
+            referral_code = profile.get("referral_code")
+            if referral_code and referral_code.strip():
+                logger.info(f"[{self.account_index}] | │ Referral Code: {referral_code:<16}     │")
+            
+            # Display referrals_count
+            referrals_count = profile.get("referrals_count")
+            if referrals_count is not None:
+                logger.info(f"[{self.account_index}] | │ Referrals:     {referrals_count:<16}     │")
+            
+            logger.info(f"[{self.account_index}] | └─────────────────────────────────────┘")
+            
+        except Exception as e:
+            logger.error(f"[{self.account_index}] | Error displaying account info: {e}")
