@@ -8,7 +8,7 @@
 
 </div>
 
-A powerful automation tool for KiteAI Ozone platform with advanced task management, AI interactions, token operations, and social integrations.
+A powerful automation tool for KiteAI Ozone platform with advanced task management, AI interactions, token operations, and social integrations
 
 ## 🌟 Features
 
